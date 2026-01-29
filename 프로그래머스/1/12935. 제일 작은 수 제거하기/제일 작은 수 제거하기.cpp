@@ -1,32 +1,16 @@
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 vector<int> solution(vector<int> arr) {
-    vector<int> answer;
-    int MinNum = arr[0];
     
-    for(int i = 0; i < arr.size(); i++)
-    {
-        if(arr[i] < MinNum)
-        {
-            MinNum = arr[i];
-        }
-    }
+    if(arr.size() <= 1) return {-1};
     
-    for(int i = 0; i < arr.size(); i++)
-    {
-        if(arr[i] != MinNum)
-        {
-            answer.push_back(arr[i]);
-        }
-    }
+    auto it = min_element(arr.begin(),arr.end());
     
-    if(answer.empty())
-    {
-        return {-1};
-    }
-    
-    return answer;
+    arr.erase(it);
+
+    return arr;
 }
